@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import bts.sio.azurimmo.views.appartement.AppartementList
 import bts.sio.azurimmo.views.batiment.BatimentList
 
 @Composable
@@ -19,7 +20,7 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
             BatimentList()
         }
         composable("appartements_list") {
-            Text("Page appartements")
+            AppartementList()
         }
         composable("contrats_list") {
             Text("Page contrats")
