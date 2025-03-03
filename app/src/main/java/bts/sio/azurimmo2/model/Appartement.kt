@@ -6,6 +6,6 @@ data class Appartement(
     val surface: Float,
     val nombrePieces: Int,
     val description: String,
-    val batiment: Batiment
+    val batiment: Batiment?
 
 )

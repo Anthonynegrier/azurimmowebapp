@@ -27,7 +27,10 @@ fun AppartementCard(appartement: Appartement) {
             Text(text = "Surface : ${appartement.surface} m²", style = MaterialTheme.typography.bodyMedium)
             Text(text = "Pièces : ${appartement.nombrePieces}", style = MaterialTheme.typography.bodyMedium)
             Text(text = appartement.description, style = MaterialTheme.typography.bodySmall)
-            Text(text = "Bâtiment : ${appartement.batiment.adresse} - ${appartement.batiment.ville}", style = MaterialTheme.typography.bodySmall)
+            Text(
+                text = "Bâtiment : ${appartement.batiment?.adresse ?: "Non assigné"} - ${appartement.batiment?.ville ?: "N/A"}",
+                style = MaterialTheme.typography.bodySmall
+            )
         }
     }
 }
