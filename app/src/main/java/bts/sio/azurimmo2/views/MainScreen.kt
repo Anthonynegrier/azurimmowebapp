@@ -20,5 +20,3 @@ fun MainScreen() {
         AppNavigation(navController = navController, modifier = Modifier.padding(innerPadding))
     }
 }
-
-

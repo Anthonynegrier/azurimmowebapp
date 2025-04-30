@@ -10,10 +10,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import bts.sio.azurimmo2.model.Appartement
 
 @Composable
-fun AppartementCard(appartement: Appartement) {
+fun AppartementCard(appartement: Appartement, navController: NavController) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
