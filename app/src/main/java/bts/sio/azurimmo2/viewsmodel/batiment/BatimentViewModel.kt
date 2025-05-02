@@ -1,5 +1,6 @@
 package bts.sio.azurimmo.viewsmodel.batiment
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import bts.sio.azurimmo2.api.RetrofitInstance
@@ -36,10 +37,9 @@ class BatimentViewModel : ViewModel() {
                 _batiments.value = response
             } catch (e: Exception) {
                 _errorMessage.value =
-                    "Erreur test : ${e.localizedMessage ?: "Une erreur s'est produite"}"
+                    "Erreur : ${e.localizedMessage ?: "Une erreur s'est produite"}"
             } finally {
                 _isLoading.value = false
-                println("Chargement terminé")
             }
         }
     }
@@ -48,14 +48,18 @@ class BatimentViewModel : ViewModel() {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                val response = RetrofitInstance.api.addBatiments(batiment)
+                val newBatiment = batiment.copy(id = 0)
+
+                val response = RetrofitInstance.api.addBatiments(newBatiment)
                 if (response.isSuccessful) {
                     getBatiments()
                 } else {
-                    _errorMessage.value =
-                        "Erreur lors de l'ajout du bâtiment : ${response.message()}"
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("BatimentViewModel", "Erreur serveur : ${response.code()} - $errorBody")
+                    _errorMessage.value = "Erreur lors de l'ajout du bâtiment : ${response.message()} ($errorBody)"
                 }
             } catch (e: Exception) {
+                Log.e("BatimentViewModel", "Exception lors de l'ajout", e)
                 _errorMessage.value = "Erreur : ${e.message}"
             } finally {
                 _isLoading.value = false
@@ -63,3 +67,4 @@ class BatimentViewModel : ViewModel() {
         }
     }
 }
+

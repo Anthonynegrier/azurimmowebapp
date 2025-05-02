@@ -42,13 +42,25 @@ class AppartementViewModel : ViewModel() {
     fun addAppartement(appartement: Appartement) {
         viewModelScope.launch {
             _isLoading.value = true
+            _errorMessage.value = null
+
             try {
-                val response = RetrofitInstance.api.addAppartements(appartement)
+                // Création d'un nouvel appartement avec ID à 0
+                val newAppartement = Appartement(
+                    id = 0,
+                    numero = appartement.numero,
+                    surface = appartement.surface,
+                    nombrePieces = appartement.nombrePieces,
+                    description = appartement.description,
+                    batiment = appartement.batiment
+                )
+
+                val response = RetrofitInstance.api.addAppartements(newAppartement)
                 if (response.isSuccessful) {
                     getAppartements()
                 } else {
                     _errorMessage.value =
-                        "Erreur lors de l'ajout du bâtiment : ${response.message()}"
+                        "Erreur lors de l'ajout de l'appartement : ${response.message()}"
                 }
             } catch (e: Exception) {
                 _errorMessage.value = "Erreur : ${e.message}"
@@ -58,3 +70,5 @@ class AppartementViewModel : ViewModel() {
         }
     }
 }
+
+

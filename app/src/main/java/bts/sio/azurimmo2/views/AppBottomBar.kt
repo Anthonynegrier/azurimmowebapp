@@ -6,6 +6,7 @@ import androidx.compose.material.icons.filled.Business
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Build
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -27,7 +28,7 @@ fun AppBottomBar(navController: NavController) {
         BottomNavItem("Contrats", "contrats_list", Icons.Filled.Description),
         BottomNavItem("Loc", "locataires_list", Icons.Filled.Person),
         BottomNavItem("Paie", "paiements_list", Icons.Filled.AttachMoney),
-        BottomNavItem("Répart", "réparations_list", Icons.Filled.Home),
+        BottomNavItem("Répar", "reparations_list", Icons.Filled.Build), // Correction ici: sans accent dans la route
     )
 
     var selectedItem by remember { mutableStateOf(0) }
@@ -48,4 +49,5 @@ fun AppBottomBar(navController: NavController) {
 }
 
 data class BottomNavItem(val label: String, val route: String, val icon: ImageVector)
+
 

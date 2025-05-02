@@ -15,7 +15,7 @@ import bts.sio.azurimmo.views.batiment.BatimentList
 import bts.sio.azurimmo.views.contrat.ContratList
 import bts.sio.azurimmo.views.locataire.LocataireList
 import bts.sio.azurimmo.views.paiement.PaiementList
-import bts.sio.azurimmo.views.réparation.ReparationList
+import bts.sio.azurimmo.views.reparation.ReparationList
 import bts.sio.azurimmo.viewsmodel.appartement.AppartementViewModel
 import bts.sio.azurimmo.viewsmodel.batiment.BatimentViewModel
 import bts.sio.azurimmo2.views.batiment.BatimentAdd
@@ -45,7 +45,7 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
         composable("paiements_list") {
             PaiementList()
         }
-        composable("reparations_list") {
+        composable("reparations_list") {  // Correction ici: sans accent
             ReparationList()
         }
         composable("add_batiment") {
@@ -62,6 +62,7 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
                 Text("Erreur : Identifiant de bâtiment manquant")
             }
         }
-
     }
 }
+
+
